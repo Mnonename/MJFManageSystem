@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_login_bg"
+    >
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/rl_center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_height="wrap_content">
+        <RelativeLayout android:layout_width="match_parent"
+                        android:id="@+id/rl_user"
+                        android:background="@color/login_input_bg2"
+                        android:layout_height="50dp">
+            <ImageView android:layout_width="25dp"
+                       android:id="@+id/iv_user"
+                       android:src="@mipmap/ic_login_user"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:layout_height="25dp"/>
+            <ImageView android:layout_width="20dp"
+                       android:id="@+id/iv_delete"
+                       android:layout_alignParentRight="true"
+                       android:src="@mipmap/ic_login_delete"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:layout_height="20dp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_toRightOf="@id/iv_user"
+                      android:id="@+id/et_usercode"
+                      android:layout_toLeftOf="@id/iv_delete"
+                      android:background="@android:color/transparent"
+                      android:hint="请输入用户名或手机号"
+                      android:textColor="@color/white"
+                      android:textColorHint="@color/white"
+                      android:layout_centerVertical="true"
+                      android:gravity="center_vertical"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_below="@id/rl_user"
+                        android:layout_marginTop="3dp"
+                        android:id="@+id/rl_password"
+                        android:background="@color/login_input_bg2"
+                        android:layout_height="50dp">
+            <ImageView android:layout_width="25dp"
+                       android:id="@+id/iv_password"
+                       android:src="@mipmap/ic_login_password"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:layout_height="25dp"/>
+            <ImageView android:layout_width="20dp"
+                       android:id="@+id/iv_delete2"
+                       android:layout_alignParentRight="true"
+                       android:src="@mipmap/ic_login_delete"
+                       android:layout_centerVertical="true"
+                       android:layout_marginLeft="10dp"
+                       android:layout_marginRight="10dp"
+                       android:layout_height="20dp"/>
+            <EditText android:layout_width="match_parent"
+                      android:layout_toRightOf="@id/iv_password"
+                      android:layout_toLeftOf="@id/iv_delete2"
+                      android:id="@+id/et_password"
+                      android:background="@android:color/transparent"
+                      android:hint="请输入密码"
+                      android:inputType="textPassword"
+                      android:textColor="@color/white"
+                      android:textColorHint="@color/white"
+                      android:layout_centerVertical="true"
+                      android:gravity="center_vertical"
+                      android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_width="match_parent"
+
+                    android:layout_below="@id/rl_center"
+                    android:layout_height="wrap_content">
+        <ImageView android:layout_width="20dp"
+                   android:id="@+id/iv_login_register"
+                   android:src="@mipmap/ic_login_register"
+                   android:layout_alignParentRight="true"
+                   android:padding="5dp"
+                   android:layout_marginRight="5dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginTop="3dp"
+                   android:layout_height="20dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:id="@+id/tv_register"
+                  android:padding="5dp"
+                  android:layout_toLeftOf="@id/iv_login_register"
+                  android:textColor="@color/white"
+                  android:layout_centerVertical="true"
+                  android:text="注册账号"
+                  android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+    <Button android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/button_login"
+            android:textSize="16sp"
+            android:layout_margin="10dp"
+            android:id="@+id/btn_login"
+            android:textColor="@color/white"
+            android:text="登   录"
+            android:layout_height="40dp"/>
+</RelativeLayout>

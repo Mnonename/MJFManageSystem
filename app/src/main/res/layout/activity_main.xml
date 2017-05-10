@@ -1,0 +1,58 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_bottom_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/rg_main"
+        android:background="@color/main_line" />
+
+    <RadioGroup
+        android:id="@+id/rg_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_select"
+            style="@style/HomeRadioButton"
+            android:text="查询" />
+
+        <RadioButton
+            android:id="@+id/rb_add"
+            style="@style/HomeRadioButton"
+            android:text="增加" />
+
+        <RadioButton
+            android:id="@+id/rb_modify"
+            style="@style/HomeRadioButton"
+            android:text="修改" />
+
+        <RadioButton
+            android:id="@+id/rb_delete"
+            style="@style/HomeRadioButton"
+            android:text="删除" />
+
+        <RadioButton
+            android:id="@+id/rb_me"
+            style="@style/HomeRadioButton"
+            android:text="我的" />
+    </RadioGroup>
+
+
+    <com.mjf.mjfmanagesystem.view.NonSwipeableViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/view_bottom_line" />
+
+</RelativeLayout>

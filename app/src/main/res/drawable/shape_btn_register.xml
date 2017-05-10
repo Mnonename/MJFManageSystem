@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/register_title_bg"/>
+    <corners android:radius="5dip"/>
+    <!-- 节点6：stroke (描边)
+        android:width 描边的宽度
+        android:color 描边的颜色
+        把描边弄成虚线的形式"- - -":
+        android:dashWidth 表示'-'这样一个横线的宽度
+        android:dashGap 表示之间隔开的距离
+    -->
+</shape>
