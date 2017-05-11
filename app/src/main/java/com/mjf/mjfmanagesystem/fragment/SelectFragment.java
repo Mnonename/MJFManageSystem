@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.mjf.mjfmanagesystem.R;
 import com.mjf.mjfmanagesystem.entity.UserInfo;
 import com.mjf.mjfmanagesystem.modules.SearchResultActivity;
+import com.mjf.mjfmanagesystem.util.CommonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,8 @@ public class SelectFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private String mSex = "";
+    private String mIsVip = "";
 
     public SelectFragment() {
         // Required empty public constructor
@@ -80,20 +83,34 @@ public class SelectFragment extends Fragment {
     }
 
     @OnClick(R.id.btn_seleet)
-    public void setBtnSeleet() {
+    public void setBtnSelect() {
         List<UserInfo> list = new ArrayList<>();
-//        RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(getActivity());
         UserInfo userInfo = new UserInfo();
-        userInfo.phone = "15116992241";
-//        list = mHelper.getUserInfoList(userInfo);
-//        StringBuffer sb = new StringBuffer();
-//        if (list != null && list.size() > 0) {
-//            for (int i = 0; i < list.size(); i++) {
-//                sb.append(list.get(i).username + "  " + list.get(i).phone + "  ");
-//            }
-//        }
+        String username =  etUsername.getText().toString();
+        String phone = etPhone.getText().toString();
+        String idcard = etIdcard.getText().toString();
+        String business = etBusiness.getText().toString();
+        if(CommonUtil.isNotNUll(username)){
+            userInfo.username =username;
+        }
+        if(CommonUtil.isNotNUll(phone)){
+            userInfo.phone =phone;
+        }
+        if(CommonUtil.isNotNUll(idcard)){
+            userInfo.idcard =idcard;
+        }
+        if(CommonUtil.isNotNUll(business)){
+            userInfo.business =business;
+        }
+        if(CommonUtil.isNotNUll(mSex)){
+            userInfo.sex = mSex;
+        }
+        if(CommonUtil.isNotNUll(mIsVip)){
+            userInfo.isVip = mIsVip;
+        }
+
+
         SearchResultActivity.newIntent(getActivity(),userInfo);
-//        tvTest.setText(sb.toString());
     }
 
     @Override
@@ -105,5 +122,33 @@ public class SelectFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.reset(this);
+    }
+
+    @OnClick(R.id.iv_sex_male)
+    public void setIvSexMale() {
+        ivSexMale.setImageResource(R.mipmap.radio_checked);
+        ivSexFemale.setImageResource(R.mipmap.radio);
+        mSex = "1";
+    }
+
+    @OnClick(R.id.iv_is_vip)
+    public void setIvIsVip() {
+        ivIsVip.setImageResource(R.mipmap.radio_checked);
+        ivIsNotVip.setImageResource(R.mipmap.radio);
+        mIsVip = "1";
+    }
+
+    @OnClick(R.id.iv_is_not_vip)
+    public void setIvIsNotVip() {
+        ivIsVip.setImageResource(R.mipmap.radio);
+        ivIsNotVip.setImageResource(R.mipmap.radio_checked);
+        mIsVip = "0";
+    }
+
+    @OnClick(R.id.iv_sex_female)
+    public void setIvSexFemale() {
+        ivSexMale.setImageResource(R.mipmap.radio);
+        ivSexFemale.setImageResource(R.mipmap.radio_checked);
+        mSex = "0";
     }
 }

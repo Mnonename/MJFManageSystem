@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.mjf.mjfmanagesystem.R;
 import com.mjf.mjfmanagesystem.base.BaseActivity;
+import com.mjf.mjfmanagesystem.util.CommonUtil;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -34,6 +35,10 @@ public class LoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.inject(this);
+        String usercode = CommonUtil.getString(mContext, CommonUtil.USERCODE);
+        if(CommonUtil.isNotNUll(usercode)){
+            startNewActivity(MainActivity.class, true);
+        }
     }
 
     @OnClick(R.id.tv_register)
@@ -45,20 +50,22 @@ public class LoginActivity extends BaseActivity {
     public void setBtnLogin() {
         String userCode = etUsercode.getText().toString();
         String password = etPassword.getText().toString();
-//        if(CommonUtil.isNUll(userCode)){
-//            toast("账号不能为空");
-//            return;
-//        }
-//        if(CommonUtil.isNUll(password)){
-//            toast("密码不能为空");
-//            return;
-//        }
-//        String rightPassword = mHelper.getPassword(userCode);
-//        if(password.equals(rightPassword)){
-//            startNewActivity(MainActivity.class, true);
-//        }else{
-//            toast("账号或密码不正确");
-//        }
+        if(CommonUtil.isNUll(userCode)){
+            toast("账号不能为空");
+            return;
+        }
+        if(CommonUtil.isNUll(password)){
+            toast("密码不能为空");
+            return;
+        }
+        String rightPassword = mHelper.getPassword(userCode);
+        if(password.equals(rightPassword)){
+            startNewActivity(MainActivity.class, true);
+        }else{
+            toast("账号或密码不正确");
+        }
+        CommonUtil.putString(mContext, CommonUtil.USERCODE,userCode);
+        CommonUtil.putString(mContext, CommonUtil.PASSWORD,password);
         startNewActivity(MainActivity.class, true);
     }
 

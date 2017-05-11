@@ -1,5 +1,7 @@
 package com.mjf.mjfmanagesystem.util;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import java.text.SimpleDateFormat;
@@ -10,6 +12,9 @@ import java.util.regex.Pattern;
  * Created by lxt on 2017/5/10.
  */
 public class CommonUtil {
+    private static String PREFERENCE_NAME ="mjf_test";
+    public static final  String USERCODE ="usercode";
+    public static final  String PASSWORD ="password";
     public static boolean isNotNUll(String value) {
         if (value != null && value.length() > 0) {
             return true;
@@ -84,5 +89,15 @@ public class CommonUtil {
         Pattern p = Pattern.compile("^\\d{11}");
         Matcher m = p.matcher(phonenum);
         return m.matches();
+    }
+    public static boolean putString(Context mContext ,String key, String value) {
+        SharedPreferences settings = mContext.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(key, value);
+        return editor.commit();
+    }
+    public static String getString(Context mContext ,String key) {
+        SharedPreferences settings = mContext.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        return settings.getString(key, null);
     }
 }

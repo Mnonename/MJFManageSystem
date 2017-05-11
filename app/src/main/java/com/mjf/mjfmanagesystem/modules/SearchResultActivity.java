@@ -20,6 +20,7 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * 查询结果页面
@@ -32,6 +33,7 @@ public class SearchResultActivity extends BaseActivity {
     private UserInfo userInfo;
     private List<UserInfo> userInfoList;
     private SearchResultAdapter mAdapter;
+    private int pageSize = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class SearchResultActivity extends BaseActivity {
         ButterKnife.inject(this);
         userInfo = (UserInfo) getIntent().getSerializableExtra(SearchResultKEY);
         userInfoList = new ArrayList<>();
-        userInfoList = mHelper.getUserInfoList(userInfo);
+        userInfoList = mHelper.getUserInfoList(userInfo,pageSize);
         mAdapter = new SearchResultAdapter(mContext, userInfoList);
         //创建布局管理器
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
@@ -60,6 +62,11 @@ public class SearchResultActivity extends BaseActivity {
                         mRecyclerView.hideProgress();
                         mRecyclerView.hideMoreProgress();
 //                        userInfoList.addAll(userInfoList);
+                        pageSize +=1;
+                        userInfoList= mHelper.getUserInfoList(userInfo,pageSize);
+                        if(userInfoList.size()<10){
+                            mRecyclerView.removeMoreListener();
+                        }
                         mAdapter.addAll(userInfoList);
                     }
                 },2000);
@@ -71,5 +78,9 @@ public class SearchResultActivity extends BaseActivity {
         Intent intent = new Intent(context, SearchResultActivity.class);
         intent.putExtra(SearchResultKEY, userInfo);
         context.startActivity(intent);
+    }
+    @OnClick({(R.id.iv_back)})
+    public void setIvBack() {
+        finish();
     }
 }

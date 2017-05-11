@@ -83,6 +83,7 @@ public class AddFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
     }
 
     @OnClick(R.id.btn_add)
@@ -100,15 +101,28 @@ public class AddFragment extends Fragment {
         userInfo.business = business;
         userInfo.createTime = CommonUtil.getCurrentTime();
         RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(getActivity());
-//        for (int i = 0; i <50 ; i++) {
-//
-//        }
+        for (int i = 0; i <50 ; i++) {
+            mHelper.saveUserInfo(userInfo);
+        }
         boolean success = mHelper.saveUserInfo(userInfo);
         if (success) {
             Toast.makeText(getActivity(), "保存成功", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(getActivity(), "保存失败", Toast.LENGTH_LONG).show();
         }
+        clearData();
+    }
+    private void clearData(){
+        etUsername.setText("");
+        etPhone.setText("");
+        etIdcard.setText("");
+        etBusiness.setText("");
+        ivSexMale.setImageResource(R.mipmap.radio_checked);
+        ivSexFemale.setImageResource(R.mipmap.radio);
+        sex = 1;
+        ivIsVip.setImageResource(R.mipmap.radio);
+        ivIsNotVip.setImageResource(R.mipmap.radio_checked);
+        isVip = 0;
     }
     @OnClick(R.id.et_business)
     public void setEtBusiness(){

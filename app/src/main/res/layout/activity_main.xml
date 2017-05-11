@@ -38,12 +38,14 @@
             android:id="@+id/rb_modify"
             style="@style/HomeRadioButton"
             android:drawableTop="@drawable/selector_checked_main_modify"
+            android:visibility="gone"
             android:text="修改" />
 
         <RadioButton
             android:id="@+id/rb_delete"
             style="@style/HomeRadioButton"
             android:drawableTop="@drawable/selector_checked_main_delete"
+            android:visibility="gone"
             android:text="删除" />
 
         <RadioButton

@@ -10,6 +10,7 @@ import android.widget.RadioGroup;
 import com.mjf.mjfmanagesystem.R;
 import com.mjf.mjfmanagesystem.base.BaseActivity;
 import com.mjf.mjfmanagesystem.fragment.AddFragment;
+import com.mjf.mjfmanagesystem.fragment.MyFragment;
 import com.mjf.mjfmanagesystem.fragment.SelectFragment;
 import com.mjf.mjfmanagesystem.view.CustomFragmentAdapter;
 import com.mjf.mjfmanagesystem.view.NonSwipeableViewPager;
@@ -31,22 +32,22 @@ public class MainActivity extends BaseActivity {
     @InjectView(R.id.rg_main) RadioGroup rgMain;
     @InjectView(R.id.pager) NonSwipeableViewPager mPager;
 
-    int[] values = {R.id.rb_select, R.id.rb_add, R.id.rb_modify, R.id.rb_delete, R.id.rb_me};
+    int[] values = {R.id.rb_select, R.id.rb_add, R.id.rb_me};
     RadioButton[] radioButtons = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.inject(this);
-        radioButtons = new RadioButton[]{rbSelect, rbAdd, rbModify, rbDelete, rbMe};
+        radioButtons = new RadioButton[]{rbSelect, rbAdd,  rbMe};
         try {
 
             List<Fragment> listFragment = new ArrayList<>();
             listFragment.add(new SelectFragment());
             listFragment.add(new AddFragment());
-            listFragment.add(new SelectFragment());
-            listFragment.add(new AddFragment());
-            listFragment.add(new SelectFragment());
+//            listFragment.add(new SelectFragment());
+//            listFragment.add(new AddFragment());
+            listFragment.add(new MyFragment());
 
             mPager.setOffscreenPageLimit(values.length);
             mPager.setOnPageChangeListener(new MyPagerChangeListener());

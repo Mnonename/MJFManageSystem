@@ -72,21 +72,39 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 	    } 
 	 
 	 public String getPassword(String userCode){
-		    SQLiteDatabase db = getReadableDatabase();
-		      String password = "";
-		    Cursor cursor = db.rawQuery("select password from system_user_info where userCode=? ", new String[]{userCode});
-		    while (cursor.moveToNext()) {
-		    	 password = cursor.getString(0); //获取第一列的值,第一列的索引从0开始
-		    }
-		    cursor.close();
-		    db.close();
-		 return password;
-	 }
+		SQLiteDatabase db = getReadableDatabase();
+		String password = "";
+		Cursor cursor = db.rawQuery("select password from system_user_info where userCode=? ", new String[]{userCode});
+		while (cursor.moveToNext()) {
+			password = cursor.getString(0); //获取第一列的值,第一列的索引从0开始
+		}
+		cursor.close();
+		db.close();
+		return password;
+	}
+	public ManagerUserInfo getManagerUserInfo(String userCode){
+		SQLiteDatabase db = getReadableDatabase();
+		String password = "";
+		ManagerUserInfo managerUserInfo = new ManagerUserInfo();
+		Cursor cursor = db.rawQuery("select * from system_user_info where userCode=? ", new String[]{userCode});
+		while (cursor.moveToNext()) {
+			managerUserInfo.ID = cursor.getString(0); //获取第一列的值,第一列的索引从0开始
+			managerUserInfo.userCode = cursor.getString(1);
+			managerUserInfo.password = cursor.getString(2);
+			managerUserInfo.phone = cursor.getString(3);
+			managerUserInfo.username = cursor.getString(4);
+			managerUserInfo.idcard = cursor.getString(5);
+			managerUserInfo.status = cursor.getString(6);
+		}
+		cursor.close();
+		db.close();
+		return managerUserInfo;
+	}
 	 public int deleteSystemUser(String userCode){
 		 SQLiteDatabase db =getWritableDatabase();
 		int num = db.delete(TB_SYSTEM_USER_INFO, new String("userCode" + " =? "),
 				new String[] { userCode });
-		 db.close();  
+		 db.close();
 		 return num;
 	 }
 	//对人员进行操作
@@ -99,33 +117,80 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 		cv.put("sex", userInfo.sex);
 		cv.put("createTime", userInfo.createTime);
 		cv.put("isVip", userInfo.isVip);
+		cv.put("business", userInfo.business);
 		long insert = getWritableDatabase().insert(TB_USER_INFO, "phone", cv);
 		if(insert==-1){
 			return false;
 		}
 		return true;
 	}
-	public List<UserInfo> getUserInfoList(UserInfo serachUserInfo){
+	public List<UserInfo> getUserInfoList(UserInfo serachUserInfo,int pageSize){
 		SQLiteDatabase db = getReadableDatabase();
-		String password = "";
-		Cursor cursor = db.rawQuery("select * from user_info where phone  like ? ", new String[]{"%"+serachUserInfo.phone +"%"});
+		String mUsername = serachUserInfo.username;
+		String mSex = serachUserInfo.sex;
+		String mPhone = serachUserInfo.phone;
+		String mIdcard =serachUserInfo.idcard;
+		String mVip = serachUserInfo.isVip;
+		String mBusiness = serachUserInfo.business;
+		StringBuffer sql = new StringBuffer();
+		sql.append("select * from user_info where 1=1 ");
+		List<String> mList = new ArrayList<>();
+		if(mUsername !=null && mUsername.length()>0){
+			sql.append(" and username like ? ");
+			mList.add("%"+ mUsername +"%");
+		}
+		if(mSex !=null && mSex.length()>0){
+			sql.append(" and sex = ? ");
+			mList.add(mSex);
+		}
+		if(mPhone !=null && mPhone.length()>0){
+			sql.append(" and phone like ? ");
+			mList.add("%"+mPhone+"%");
+		}
+		if(mIdcard !=null && mIdcard.length()>0){
+			sql.append(" and idcard like ? ");
+			mList.add("%"+mIdcard+"%");
+		}
+		if(mVip !=null && mVip.length()>0){
+			sql.append(" and isVip = ? ");
+			mList.add(mVip);
+		}
+		if(mBusiness !=null && mBusiness.length()>0){
+			sql.append(" and business = ? ");
+			mList.add(mBusiness);
+		}
+		sql.append("Limit 10 Offset " +(pageSize-1)*10);
+		String[] strings = null;
+		if(mList.size()>0){
+			strings = new String[mList.size()];
+			for (int i = 0; i < mList.size(); i++) {
+				strings[i] = mList.get(i);
+			}
+		}
+
+
+		Cursor cursor = db.rawQuery(sql.toString(), strings);
 		List<UserInfo> userInfoList = new ArrayList<UserInfo>();
 		while (cursor.moveToNext()) {
+			String ID = cursor.getString(0); //获取第一列的值,第一列的索引从0开始
 			String userCode = cursor.getString(1); //获取第一列的值,第一列的索引从0开始
 			String sex = cursor.getString(2);//获取第二列的值
-			String mPhone = cursor.getString(3);//获取第三列的值
+			String phone = cursor.getString(3);//获取第三列的值
 			String username = cursor.getString(4);//获取第三列的值
 			String idcard = cursor.getString(5);//获取第三列的值
 			String createTime = cursor.getString(6);//获取第三列的值
 			String isVip = cursor.getString(7);//获取第三列的值
+			String business = cursor.getString(8);//获取第三列的值
 			UserInfo userInfo = new UserInfo();
+			userInfo.ID = ID;
 			userInfo.userCode = userCode;
 			userInfo.sex = sex;
-			userInfo.phone = mPhone;
+			userInfo.phone = phone;
 			userInfo.username = username;
 			userInfo.idcard = idcard;
 			userInfo.createTime =createTime;
 			userInfo.isVip = isVip;
+			userInfo.business = business;
 			userInfoList.add(userInfo);
 		}
 		cursor.close();
