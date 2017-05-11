@@ -59,4 +59,9 @@
         <!--<item name="android:textColor">@drawable/selector_checked_txt_pink_grey_color</item>-->
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="MyDialog"
+           parent="android:Theme.Holo.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

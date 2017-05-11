@@ -11,11 +11,11 @@ public class UserInfo implements Serializable {
     public String phone;//手机号
     public String username;//姓名
     public String idcard;//身份证
-    public String status;//状态
-    public String sex;//性别
+    public String sex;//性别/ 1 "男";    0 女
     public String createTime;//创建时间
-    public String isVip;//是不是vip
+    public String isVip;//是不是vip //1 是      0 "否";
     public String ID;//ID
+    public String business;//业务
     public UserInfo(){
 
     }

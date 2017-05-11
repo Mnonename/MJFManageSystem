@@ -44,7 +44,8 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 				"username"+ " varchar,"+
 				"idcard"+ " varchar,"+
 				"createTime"+ " varchar,"+
-				"isVip"+ " varchar"+
+				"isVip"+ " varchar,"+
+				"business"+ " varchar"+
 				")"
 		);
 	}
@@ -104,10 +105,10 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 		}
 		return true;
 	}
-	public List<UserInfo> getUserInfoList(String phone){
+	public List<UserInfo> getUserInfoList(UserInfo serachUserInfo){
 		SQLiteDatabase db = getReadableDatabase();
 		String password = "";
-		Cursor cursor = db.rawQuery("select * from user_info where phone  like ? ", new String[]{"%"+phone +"%"});
+		Cursor cursor = db.rawQuery("select * from user_info where phone  like ? ", new String[]{"%"+serachUserInfo.phone +"%"});
 		List<UserInfo> userInfoList = new ArrayList<UserInfo>();
 		while (cursor.moveToNext()) {
 			String userCode = cursor.getString(1); //获取第一列的值,第一列的索引从0开始

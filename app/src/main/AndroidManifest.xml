@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".modules.RegisterActivity">
         </activity>
+        <activity android:name=".modules.SearchResultActivity">
+        </activity>
     </application>
 
 </manifest>

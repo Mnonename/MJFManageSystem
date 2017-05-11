@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mjf.mjfmanagesystem.modules.SearchResultActivity">
+    <RelativeLayout android:id="@+id/rl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/register_title_bg">
+        <ImageView android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="5dp"
+                   android:src="@mipmap/ic_back"
+                   android:id="@+id/iv_back"
+                   android:padding="5dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:text="查询结果"
+                  android:textColor="@color/white"
+                  android:textSize="20sp"/>
+    </RelativeLayout>
+    <com.malinskiy.superrecyclerview.SuperRecyclerView
+        android:id="@+id/lv_main"
+        android:layout_width="match_parent"
+        android:layout_below="@id/rl_title"
+        android:layout_height="match_parent">
+
+    </com.malinskiy.superrecyclerview.SuperRecyclerView>
+</RelativeLayout>

@@ -19,4 +19,5 @@
     <color name="login_input_bg2">#A0FFFFFF</color>
     <color name="icon_checked">#2BBCD7</color>
     <color name="icon">#858585</color>
+    <color name="red">#ff0000</color>
 </resources>
