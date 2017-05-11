@@ -33,6 +33,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:textColor">@color/register_text_name</item>
+
         <item name="android:textSize">14sp</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -54,6 +55,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:scaleType">center</item>
+        <item name="android:textColor">@drawable/selector_checked_txt_main_color</item>
         <!--<item name="android:textColor">@drawable/selector_checked_txt_pink_grey_color</item>-->
         <item name="android:textSize">14sp</item>
     </style>

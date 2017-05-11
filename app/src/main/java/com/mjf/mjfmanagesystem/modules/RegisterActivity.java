@@ -74,7 +74,7 @@ public class RegisterActivity extends BaseActivity {
         userInfo.phone = phone;
         userInfo.status = "1";
         // 保存在本地数据库
-        mHelper.saveUserInfo(userInfo);
+        mHelper.saveSystemUserInfo(userInfo);
         toast("注册成功");
         finish();
     }

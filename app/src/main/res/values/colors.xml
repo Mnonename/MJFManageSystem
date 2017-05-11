@@ -17,4 +17,6 @@
     <color name="main_bord_line">#F2F2F2</color>
     <color name="main_line">#BEBEBE</color>
     <color name="login_input_bg2">#A0FFFFFF</color>
+    <color name="icon_checked">#2BBCD7</color>
+    <color name="icon">#858585</color>
 </resources>

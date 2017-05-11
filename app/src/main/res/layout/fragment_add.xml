@@ -3,11 +3,181 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              tools:context="com.mjf.mjfmanagesystem.fragment.AddFragment">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="add_fragment"/>
 
+    <RelativeLayout android:id="@+id/rl_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/register_title_bg">
+        <ImageView android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   android:layout_centerVertical="true"
+                   android:layout_marginLeft="5dp"
+                   android:src="@mipmap/ic_back"
+                   android:visibility="gone"
+                   android:id="@+id/iv_back"
+                   android:padding="5dp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:text="新增用户"
+                  android:textColor="@color/white"
+                  android:textSize="20sp"/>
+    </RelativeLayout>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_below="@id/rl_title"
+                      android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="5dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/RegisterImageView"
+                    android:src="@mipmap/ic_register_user"/>
+                <TextView
+                    style="@style/RegisterTextView"
+                    android:layout_weight="1"
+                    android:text="姓名"/>
+                <EditText
+                    android:id="@+id/et_username"
+                    style="@style/RegisterEditText"
+                    android:layout_weight="2"
+                    android:hint=""/>
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@color/register_line"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="5dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/RegisterImageView"
+                    android:src="@mipmap/ic_sex"/>
+                <TextView
+                    style="@style/RegisterTextView"
+                    android:layout_weight="1"
+                    android:text="性别"/>
+                <LinearLayout android:layout_weight="2"
+                              android:layout_width="0dp"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="30dp"
+                               android:layout_gravity="center_vertical"
+                               android:src="@mipmap/radio_checked"
+                               android:id="@+id/iv_sex_male"
+                               android:padding="5dp"
+                               android:layout_height="30dp"/>
+                    <TextView
+                        style="@style/RegisterTextView"
+                        android:layout_weight="1"
+                        android:text="男"/>
+                    <ImageView android:layout_width="30dp"
+                               android:layout_gravity="center_vertical"
+                               android:src="@mipmap/radio"
+                               android:id="@+id/iv_sex_female"
+                               android:padding="5dp"
+                               android:layout_height="30dp"/>
+                    <TextView
+                        style="@style/RegisterTextView"
+                        android:layout_weight="1"
+                        android:text="女"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@color/register_line"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="5dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/RegisterImageView"
+                    android:src="@mipmap/ic_register_phone"/>
+                <TextView
+                    style="@style/RegisterTextView"
+                    android:layout_weight="1"
+                    android:text="手机号"/>
+                <EditText
+                    android:id="@+id/et_phone"
+                    style="@style/RegisterEditText"
+                    android:layout_weight="2"
+                    android:inputType="number"
+                    android:hint=""/>
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@color/register_line"/>
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="5dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/RegisterImageView"
+                    android:src="@mipmap/ic_register_idcard"/>
+                <TextView
+                    style="@style/RegisterTextView"
+                    android:layout_weight="1"
+                    android:text="身份证号码"/>
+                <EditText
+                    android:id="@+id/et_idcard"
+                    style="@style/RegisterEditText"
+                    android:layout_weight="2"
+                    android:hint=""/>
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@color/register_line"/>
+
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:paddingLeft="5dp"
+                          android:layout_height="wrap_content">
+                <ImageView
+                    style="@style/RegisterImageView"
+                    android:src="@mipmap/ic_vip"/>
+                <TextView
+                    style="@style/RegisterTextView"
+                    android:layout_weight="1"
+                    android:text="Vip"/>
+                <LinearLayout android:layout_weight="2"
+                              android:layout_width="0dp"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="30dp"
+                               android:id="@+id/iv_is_vip"
+                               android:layout_gravity="center_vertical"
+                               android:src="@mipmap/radio"
+                               android:padding="5dp"
+                               android:layout_height="30dp"/>
+                    <TextView
+                        style="@style/RegisterTextView"
+                        android:layout_weight="1"
+                        android:text="是"/>
+                    <ImageView android:layout_width="30dp"
+                               android:layout_gravity="center_vertical"
+                               android:src="@mipmap/radio_checked"
+                               android:padding="5dp"
+                               android:id="@+id/iv_is_not_vip"
+                               android:layout_height="30dp"/>
+                    <TextView
+                        style="@style/RegisterTextView"
+                        android:layout_weight="1"
+                        android:text="否"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <View android:layout_width="match_parent"
+                  android:layout_height="0.5dp"
+                  android:background="@color/register_line"/>
+
+        </LinearLayout>
+        <Button android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/button_login"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:id="@+id/btn_add"
+                android:textColor="@color/white"
+                android:text="添   加"
+                android:layout_height="40dp"/>
+    </RelativeLayout>
 </FrameLayout>
