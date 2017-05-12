@@ -92,6 +92,34 @@ public class AddFragment extends Fragment {
         String phone = etPhone.getText().toString();
         String idcard = etIdcard.getText().toString();
 
+        if(CommonUtil.isNUll(username)){
+            toast("用户不能为空");
+            return;
+        }
+         if(CommonUtil.isNUll(phone)){
+             toast("手机号不能为空");
+             return;
+         }else if(!CommonUtil.isphonenum(phone)){
+             toast("手机号格式错误");
+             return;
+         }
+        if(CommonUtil.isNUll(idcard)){
+            toast("身份证不能为空");
+            return;
+        }else if(!CommonUtil.isValidChinaCard(idcard)){
+            toast("身份证格式错误");
+            return;
+        }
+        if(CommonUtil.isNUll(business)){
+            toast("业务不能为空");
+            return;
+        }
+        RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(getActivity());
+        if(CommonUtil.isNotNUll(mHelper.getUserInfoByPhone(phone))){
+            toast("该手机号已被添加");
+            return;
+        }
+
         UserInfo userInfo = new UserInfo();
         userInfo.username = username;
         userInfo.phone = phone;
@@ -100,7 +128,7 @@ public class AddFragment extends Fragment {
         userInfo.isVip = isVip + "";
         userInfo.business = business;
         userInfo.createTime = CommonUtil.getCurrentTime();
-        RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(getActivity());
+
 //        for (int i = 0; i <50 ; i++) {
 //            mHelper.saveUserInfo(userInfo);
 //        }
@@ -111,6 +139,9 @@ public class AddFragment extends Fragment {
             Toast.makeText(getActivity(), "保存失败", Toast.LENGTH_LONG).show();
         }
         clearData();
+    }
+    private void toast(String text){
+        Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
     }
     private void clearData(){
         etUsername.setText("");

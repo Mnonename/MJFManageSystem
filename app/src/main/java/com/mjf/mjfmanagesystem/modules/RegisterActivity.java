@@ -63,9 +63,28 @@ public class RegisterActivity extends BaseActivity {
             return;
         }
 
+
         String username = etUsername.getText().toString();
         String idcard = etIdcard.getText().toString();
         String phone = etPhone.getText().toString();
+        if(CommonUtil.isNUll(username)){
+            toast("用户不能为空");
+            return;
+        }
+        if(CommonUtil.isNUll(phone)){
+            toast("手机号不能为空");
+            return;
+        }else if(!CommonUtil.isphonenum(phone)){
+            toast("手机号格式错误");
+            return;
+        }
+        if(CommonUtil.isNUll(idcard)){
+            toast("身份证不能为空");
+            return;
+        }else if(!CommonUtil.isValidChinaCard(idcard)){
+            toast("身份证格式错误");
+            return;
+        }
         ManagerUserInfo userInfo = new ManagerUserInfo();
         userInfo.idcard = idcard;
         userInfo.userCode = usercode;

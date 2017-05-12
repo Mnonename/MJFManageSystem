@@ -124,6 +124,17 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 		}
 		return true;
 	}
+	public String getUserInfoByPhone(String phone){
+		SQLiteDatabase db = getReadableDatabase();
+		String password = "";
+		Cursor cursor = db.rawQuery("select phone from user_info where phone=? ", new String[]{phone});
+		while (cursor.moveToNext()) {
+			password = cursor.getString(0); //获取第一列的值,第一列的索引从0开始
+		}
+		cursor.close();
+		db.close();
+		return password;
+	}
 	public List<UserInfo> getUserInfoList(UserInfo serachUserInfo,int pageSize){
 		SQLiteDatabase db = getReadableDatabase();
 		String mUsername = serachUserInfo.username;

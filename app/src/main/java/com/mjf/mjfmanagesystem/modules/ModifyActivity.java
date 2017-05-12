@@ -39,6 +39,7 @@ public class ModifyActivity extends BaseActivity {
     private int sex = 1;// 1 "男";    0 女
     private int isVip = 0;//1 是      0 "否";
     private String business;//业务
+    private String oraginPhone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class ModifyActivity extends BaseActivity {
             ivSexMale.setImageResource(R.mipmap.radio);
         }
         etPhone.setText(userInfo.phone);
+        oraginPhone = userInfo.phone;
         etIdcard.setText(userInfo.idcard);
         if("1".equals(userInfo.isVip)){
             ivIsVip.setImageResource(R.mipmap.radio_checked);
@@ -63,6 +65,7 @@ public class ModifyActivity extends BaseActivity {
             ivIsVip.setImageResource(R.mipmap.radio);
         }
         etBusiness.setText(userInfo.business);
+        business = userInfo.business;
     }
     public static void newIntent(Context context, UserInfo userInfo) {
         Intent intent = new Intent(context, ModifyActivity.class);
@@ -83,7 +86,37 @@ public class ModifyActivity extends BaseActivity {
 
         userInfo.business = business;
         userInfo.createTime = CommonUtil.getCurrentTime();
+
+        if(CommonUtil.isNUll(username)){
+            toast("用户不能为空");
+            return;
+        }
+        if(CommonUtil.isNUll(phone)){
+            toast("手机号不能为空");
+            return;
+        }else if(!CommonUtil.isphonenum(phone)){
+            toast("手机号格式错误");
+            return;
+        }
+        if(CommonUtil.isNUll(idcard)){
+            toast("身份证不能为空");
+            return;
+        }else if(!CommonUtil.isValidChinaCard(idcard)){
+            toast("身份证格式错误");
+            return;
+        }
+        if(CommonUtil.isNUll(business)){
+            toast("业务不能为空");
+            return;
+        }
         RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(mContext);
+        if(oraginPhone !=null && !oraginPhone.equals(phone)){
+            if(CommonUtil.isNotNUll(mHelper.getUserInfoByPhone(phone))){
+                toast("该手机号已被添加");
+                return;
+            }
+        }
+
         int success = mHelper.updateUser(userInfo);
         if (success==1) {
             Toast.makeText(mContext, "修改成功", Toast.LENGTH_LONG).show();
