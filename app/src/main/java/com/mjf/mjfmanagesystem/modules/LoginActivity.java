@@ -59,10 +59,9 @@ public class LoginActivity extends BaseActivity {
             return;
         }
         String rightPassword = mHelper.getPassword(userCode);
-        if(password.equals(rightPassword)){
-            startNewActivity(MainActivity.class, true);
-        }else{
+        if(!password.equals(rightPassword)){
             toast("账号或密码不正确");
+            return;
         }
         CommonUtil.putString(mContext, CommonUtil.USERCODE,userCode);
         CommonUtil.putString(mContext, CommonUtil.PASSWORD,password);

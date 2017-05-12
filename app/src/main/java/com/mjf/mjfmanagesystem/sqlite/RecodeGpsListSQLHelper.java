@@ -197,5 +197,26 @@ public class RecodeGpsListSQLHelper extends SQLiteOpenHelper{
 		db.close();
 		return userInfoList;
 	}
+	public int deleteUser(String userID){
+		SQLiteDatabase db =getWritableDatabase();
+		int num = db.delete(TB_USER_INFO, new String("ID" + " =? "),
+				new String[] { userID });
+		db.close();
+		return num;
+	}
+	public int updateUser(UserInfo userInfo){
+		SQLiteDatabase db =getWritableDatabase();
+		ContentValues contentValues = new ContentValues();
+		contentValues.put("username", userInfo.username);
+		contentValues.put("sex", userInfo.sex);
+		contentValues.put("phone", userInfo.phone);
+		contentValues.put("idcard", userInfo.idcard);
+		contentValues.put("isVip", userInfo.isVip);
+		contentValues.put("business", userInfo.business);
+		int num = db.update(TB_USER_INFO, contentValues,
+				"ID" +"=" +userInfo.ID, null);
+		db.close();
+		return num;
+	}
 
 }
