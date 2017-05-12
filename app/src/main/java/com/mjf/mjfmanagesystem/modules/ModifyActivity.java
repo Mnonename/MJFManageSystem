@@ -101,7 +101,7 @@ public class ModifyActivity extends BaseActivity {
         if(CommonUtil.isNUll(idcard)){
             toast("身份证不能为空");
             return;
-        }else if(!CommonUtil.isValidChinaCard(idcard)){
+        }else if(!CommonUtil.isValidCard(idcard)){
             toast("身份证格式错误");
             return;
         }
