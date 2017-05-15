@@ -1,8 +1,10 @@
 package com.mjf.mjfmanagesystem.fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,5 +152,23 @@ public class SelectFragment extends Fragment {
         ivSexMale.setImageResource(R.mipmap.radio);
         ivSexFemale.setImageResource(R.mipmap.radio_checked);
         mSex = "0";
+    }
+    @OnClick(R.id.et_business)
+    public void setEtBusiness() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Holo_Light_Dialog);
+        //builder.setIcon(R.drawable.ic_launcher);
+        builder.setTitle("选择一个业务套餐");
+        //    指定下拉列表的显示数据
+        final String[] businessList = {"49元飞YOUNG纯流量卡", "58元全球通套餐", "100元乐享4G套餐", "288元至尊VIP专属套装"};
+        //    设置一个下拉的列表选择项
+        builder.setItems(businessList, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Toast.makeText(getActivity(), "选择的城市为：" + businessList[which], Toast.LENGTH_SHORT).show();
+                etBusiness.setText(businessList[which]);
+//                business = businessList[which];
+            }
+        });
+        builder.show();
     }
 }

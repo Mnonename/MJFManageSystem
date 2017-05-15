@@ -1,6 +1,7 @@
 package com.mjf.mjfmanagesystem.fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,7 @@ public class AddFragment extends Fragment {
     @InjectView(R.id.iv_is_not_vip) ImageView ivIsNotVip;
     @InjectView(R.id.btn_add) Button btnAdd;
     @InjectView(R.id.et_business) TextView etBusiness;
+    @InjectView(R.id.tv_add_local_excel) TextView tvAddLocalExcel;
 
     private String mParam1;
     private String mParam2;
@@ -92,30 +94,30 @@ public class AddFragment extends Fragment {
         String phone = etPhone.getText().toString();
         String idcard = etIdcard.getText().toString();
 
-        if(CommonUtil.isNUll(username)){
+        if (CommonUtil.isNUll(username)) {
             toast("用户不能为空");
             return;
         }
-         if(CommonUtil.isNUll(phone)){
-             toast("手机号不能为空");
-             return;
-         }else if(!CommonUtil.isphonenum(phone)){
-             toast("手机号格式错误");
-             return;
-         }
-        if(CommonUtil.isNUll(idcard)){
+        if (CommonUtil.isNUll(phone)) {
+            toast("手机号不能为空");
+            return;
+        } else if (!CommonUtil.isphonenum(phone)) {
+            toast("手机号格式错误");
+            return;
+        }
+        if (CommonUtil.isNUll(idcard)) {
             toast("身份证不能为空");
             return;
-        }else if(!CommonUtil.isValidCard(idcard)){
+        } else if (!CommonUtil.isValidCard(idcard)) {
             toast("身份证格式错误");
             return;
         }
-        if(CommonUtil.isNUll(business)){
+        if (CommonUtil.isNUll(business)) {
             toast("业务不能为空");
             return;
         }
         RecodeGpsListSQLHelper mHelper = new RecodeGpsListSQLHelper(getActivity());
-        if(CommonUtil.isNotNUll(mHelper.getUserInfoByPhone(phone))){
+        if (CommonUtil.isNotNUll(mHelper.getUserInfoByPhone(phone))) {
             toast("该手机号已被添加");
             return;
         }
@@ -140,10 +142,12 @@ public class AddFragment extends Fragment {
         }
         clearData();
     }
-    private void toast(String text){
+
+    private void toast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();
     }
-    private void clearData(){
+
+    private void clearData() {
         etUsername.setText("");
         etPhone.setText("");
         etIdcard.setText("");
@@ -155,21 +159,20 @@ public class AddFragment extends Fragment {
         ivIsNotVip.setImageResource(R.mipmap.radio_checked);
         isVip = 0;
     }
+
     @OnClick(R.id.et_business)
-    public void setEtBusiness(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),android.R.style.Theme_Holo_Light_Dialog);
+    public void setEtBusiness() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Holo_Light_Dialog);
         //builder.setIcon(R.drawable.ic_launcher);
         builder.setTitle("选择一个业务套餐");
         //    指定下拉列表的显示数据
         final String[] businessList = {"49元飞YOUNG纯流量卡", "58元全球通套餐", "100元乐享4G套餐", "288元至尊VIP专属套装"};
         //    设置一个下拉的列表选择项
-        builder.setItems(businessList, new DialogInterface.OnClickListener()
-        {
+        builder.setItems(businessList, new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
+            public void onClick(DialogInterface dialog, int which) {
                 //Toast.makeText(getActivity(), "选择的城市为：" + businessList[which], Toast.LENGTH_SHORT).show();
-               etBusiness.setText(businessList[which]);
+                etBusiness.setText(businessList[which]);
                 business = businessList[which];
             }
         });
@@ -202,6 +205,18 @@ public class AddFragment extends Fragment {
         ivSexMale.setImageResource(R.mipmap.radio);
         ivSexFemale.setImageResource(R.mipmap.radio_checked);
         sex = 0;
+    }
+    public static final int FILE_SELECT_CODE = 502;
+    @OnClick(R.id.tv_add_local_excel)
+    public void setTvAddLocalExcel(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent,FILE_SELECT_CODE);
+//        try {
+//            startActivityForResult( Intent.createChooser(intent, "Select a File to Upload"), FILE_SELECT_CODE);
+//        } catch (android.content.ActivityNotFoundException ex) {
+//        }
     }
 
 

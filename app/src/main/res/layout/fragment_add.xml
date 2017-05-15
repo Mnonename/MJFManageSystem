@@ -25,6 +25,15 @@
                   android:text="新增用户"
                   android:textColor="@color/white"
                   android:textSize="20sp"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="导入"
+                  android:id="@+id/tv_add_local_excel"
+                  android:padding="5dp"
+                  android:layout_alignParentRight="true"
+                  android:layout_centerVertical="true"
+                  android:textColor="@color/white"
+                  android:textSize="18sp"/>
     </RelativeLayout>
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
