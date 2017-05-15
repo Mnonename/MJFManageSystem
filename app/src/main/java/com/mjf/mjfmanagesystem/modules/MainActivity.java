@@ -142,7 +142,7 @@ public class MainActivity extends BaseActivity {
             int Rows = sheet.getRows();
             int Cols = sheet.getColumns();
 
-            for (int i = 0; i < Rows; i++) {
+            for (int i = 1; i < Rows; i++) {
                 UserInfo userInfo = new UserInfo();
                 for (int j = 0; j < 6; j++) {
                     // getCell(Col,Row)获得单元格的值
